@@ -1,0 +1,61 @@
+#include<iostream>
+using namespace std;
+class queue{
+    int*arr;
+    int cs;
+    int ts;
+    int f;
+    int r;
+    public:
+    queue(int s=5){
+        arr=new int[s];
+        ts=s;
+        cs=0;
+        f=0;
+        r=-1;
+    }
+    void push(int d){
+        if(cs=ts-1){
+            r=(r+1)%ts;
+            arr[r]=d;
+            cs++;
+        }
+        else{
+            cout<<"overflow";
+        }
+    }
+    void del(){
+        if(cs>0){
+            f=(f+1)%ts;
+            cs--;
+        }
+        else{
+            cout<<"underflow";
+        }
+    }
+    int front(){
+        return arr[f];
+    }
+    bool empty(){
+        return cs==0;
+    }
+    int size(){
+        return cs;
+    }
+};
+    int main(){
+        queue q;
+        q.push(1);
+        q.push(2);
+        q.push(3);
+        q.push(4);
+        q.push(5);
+        while(!q.empty()){
+           cout<<q.front()<<" ";
+           q.del();
+    }
+        cout<<endl;
+
+
+}
+
